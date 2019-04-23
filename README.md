@@ -25,3 +25,20 @@ kubectl create namespace argocd
 
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
+
+
+## Change the default argocd password:
+
+Expose the argocd's port - in a second terminal input:
+
+```
+kubectl port-forward -n argocd service/argocd-server 8080:443
+```
+
+Pass changing:
+```
+argocd_pass=$(kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2)
+argocd login localhost:8080
+argocd account update-password
+argocd relogin
+```
