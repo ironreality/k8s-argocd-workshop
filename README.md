@@ -49,8 +49,8 @@ kubectl port-forward -n argocd service/argocd-server 8080:443
 
 Pass changing:
 ```
-argocd_pass=$(kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2)
-argocd login localhost:8080
-argocd account update-password
+argocd_default_pass=$(kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2)
+argocd login --username=admin --password=${argocd_default_pass} localhost:8080
+argocd account update-password --current-password=${argocd_default_pass} --new-password=<your_new_pass_here>
 argocd relogin
 ```
