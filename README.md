@@ -1,19 +1,28 @@
-# Installation
+# ArgoCD workshop
+-----
 
-[doc1](https://argoproj.github.io/argo-cd/getting_started/)
+The workshop aims to address the next questions:
 
-[doc2](https://blog.argoproj.io/using-gitops-to-deploy-kubeflow-with-argo-cd-76f6b27807c)
+* Argocd's installation & configuration
+* Argocd use cases
+* Usage examples
+* Exercises
 
-## Install the argocd client
+## Installation
 
-### macOS
+[Getting started guide](https://argoproj.github.io/argo-cd/getting_started/)
+
+
+### Install argocd's client
+
+#### macOS
 
 ```
 brew tap argoproj/tap
 brew install argoproj/tap/argocd
 ```
 
-### Linux
+#### Linux
 
 ```
 ARGO_CD_LATEST=$(curl --silent "https://api.github.com/repos/argoproj/argo-cd/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
@@ -21,7 +30,7 @@ curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/
 chmod +x /usr/local/bin/argocd
 ```
 
-## Install the argocd server
+### Install argocd's server components
 
 ```
 kubectl create namespace argocd
@@ -30,7 +39,7 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 ```
 
 
-## Change the default argocd password:
+### Change the default password
 
 Expose the argocd's port - in a second terminal input:
 
