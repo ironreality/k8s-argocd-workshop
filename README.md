@@ -8,10 +8,11 @@ The workshop aims to address the next questions:
 * Usage examples
 * Exercises
 
+# Resources
+
+* Official getting started [guide](https://argoproj.github.io/argo-cd/getting_started/)
+
 ## Installation
-
-[Getting started guide](https://argoproj.github.io/argo-cd/getting_started/)
-
 
 ### Install argocd's client
 
