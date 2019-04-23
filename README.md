@@ -1,12 +1,15 @@
 # Installation
 
-[doc 1](https://blog.argoproj.io/using-gitops-to-deploy-kubeflow-with-argo-cd-76f6b27807c)
+[doc1](https://argoproj.github.io/argo-cd/getting_started/)
 
-## Client
+[doc2](https://blog.argoproj.io/using-gitops-to-deploy-kubeflow-with-argo-cd-76f6b27807c)
+
+## Install the argocd client
 
 ### macOS
 
 ```
+brew tap argoproj/tap
 brew install argoproj/tap/argocd
 ```
 
@@ -18,7 +21,7 @@ curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/
 chmod +x /usr/local/bin/argocd
 ```
 
-## Server part
+## Install the argocd server
 
 ```
 kubectl create namespace argocd
