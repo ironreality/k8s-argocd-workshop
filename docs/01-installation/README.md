@@ -1,6 +1,6 @@
 # ArgoCD Installation
 
-## Install argocd's client
+## 1. Install argocd's client
 
 ### macOS
 
@@ -17,7 +17,7 @@ curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/
 chmod +x /usr/local/bin/argocd
 ```
 
-## Install the argocd's server components
+## 2. Install the argocd's server components
 
 ```
 kubectl create namespace argocd
@@ -26,7 +26,7 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 ```
 
 
-## Change the default password
+## 3. Change the default admin password
 
 Expose the argocd's port - in a second terminal input:
 
