@@ -1,18 +1,21 @@
 # ArgoCD workshop
 -----
 
-The workshop aims to address the next questions:
+## Objectives
 
 * Argocd's installation & configuration
 * Argocd use cases
 * Usage examples
 * Exercises
 
-# Resources
 
-* Official getting started [guide](https://argoproj.github.io/argo-cd/getting_started/)
+## Requirements
 
-# Requirements
-
-* a Kubernetes cluster installed and ready to work
+* A Kubernetes cluster installed and ready to work
+* Helm+Tiller deployed
 * kubectl installed and configured to work with the k8s cluster
+
+
+## Resources
+
+* ArgoCD's official getting started [guide](https://argoproj.github.io/argo-cd/getting_started/)
