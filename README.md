@@ -12,7 +12,6 @@
 ## Requirements
 
 * A Kubernetes cluster installed and ready to work
-* Helm+Tiller deployed
 * kubectl installed and configured to work with the k8s cluster
 
 
