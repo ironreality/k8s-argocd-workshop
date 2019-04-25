@@ -12,9 +12,24 @@ argocd app create sox-shop \
 --dest-namespace sox-shop
 ```
 
+Check the result:
+
+```
+$ argocd app list
+NAME             CLUSTER                         NAMESPACE  PROJECT  STATUS     HEALTH   SYNCPOLICY  CONDITIONS
+sox-shop         https://kubernetes.default.svc  sox-shop   default  OutOfSync  Missing  <none>      <none>
+```
+
 ## 2. Syncync the application
 ```
 argocd app sync sox-shop
+```
+
+Check the result:
+```
+$ argocd app list
+NAME             CLUSTER                         NAMESPACE  PROJECT  STATUS  HEALTH       SYNCPOLICY  CONDITIONS
+sox-shop         https://kubernetes.default.svc  sox-shop   default  Synced  Progressing  <none>      <none>
 ```
 
 ## 3. Checking the application
