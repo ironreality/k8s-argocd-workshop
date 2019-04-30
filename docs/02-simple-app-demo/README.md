@@ -21,7 +21,13 @@ kubectl create namespace sandbox
 argocd app create nginx-test --repo https://github.com/ironreality/k8s-argocd-workshop --path helm/nginx-test --dest-server https://kubernetes.default.svc --dest-namespace sandbox
 ```
 
-## Check k8s events
+The result in the web UI:
+
+![ui](./pics/nginx_01.png)
+
+
+
+## Checking k8s events
 ```
 $ kubectl get events -n sandbox --sort-by='.metadata.creationTimestamp' | tail -n 20
 
