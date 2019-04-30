@@ -1,23 +1,22 @@
-# ArgoCD workshop
------
+# Argo CD workshop
 
 # Overview
 
 Argo CD is a new, lighweight Kubernetes-native continuous delivery (CD) system. "Kubernetes-native" means:
 
-1. **Ideology** - ArgoCD implements **GitOps** paradigm for CD. The main point - Git is our single source of true. After we push our app's config changes into the app config repo - argocd syncs the app state with the changes. I.e. our changes are **declarative.**
-2. **Implementation** - ArgoCD is built solely from the Kubernetes entities - custom resource definitions (CRD), a controller to process the CRDs, RBAC policies to organize security etc.
+1. **Ideology** - Argo CD implements **GitOps** paradigm for CD. The main point - Git is our single source of true. After we push our app's config changes into the app config repo - argocd syncs the app state with the changes. I.e. our changes are **declarative.**
+2. **Implementation** - Argo CD is built solely from the Kubernetes entities - custom resource definitions (CRD), a controller to process the CRDs, RBAC policies to organize security etc.
 
 
 ## Version
 
-Current version is 0.12. Version 1.0 is planned for release on May.
+Current Argo CD version is 0.12. Version 1.0 is [planned](https://github.com/argoproj/argo-cd/milestones) for release on May.
 
 ## Architecture
 
 ![arch](./pics/arch.png)
 
-### ArgoCD's Components
+### Argo CD's Components
 
 1. **API server**
 * application management and status reporting
@@ -32,7 +31,7 @@ Current version is 0.12. Version 1.0 is planned for release on May.
 3. **Repository Server**
 * maintains a local cache of the Git repository
 
-4. **ArgoCD Client**
+4. **Argo CD Client**
 * a CLI application to interact with the argocd server
 
 
@@ -46,7 +45,7 @@ Current version is 0.12. Version 1.0 is planned for release on May.
 * Continuous monitoring of deployed applications.
 * Web console with visualized app's deployment scheme, logs and health statuses.
 
-* ArgoCD is agnostic to your CI system, and provides gRPC/REST/CLI to integrate with your CI of choice.
+* Argo CD is agnostic to your CI system, and provides gRPC/REST/CLI to integrate with your CI of choice.
 * SSO Integration (OIDC, LDAP, GitHub).
 * Webhook integration (GitHub, GitLab, BitBucket).
 * Complex application rollouts (e.g., canary upgrades, blue/green) via PreSync/Sync/PostSync hooks
