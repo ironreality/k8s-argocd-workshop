@@ -1,20 +1,52 @@
 # ArgoCD workshop
 -----
 
-## Objectives
+# Overview
 
-* Argocd's installation & configuration
-* Argocd use cases
-* Usage examples
-* Exercises
+Argo CD is a new, lighweight Kubernetes-native continuous delivery (CD) system. "Kubernetes-native" means:
 
-
-## Requirements
-
-* A Kubernetes cluster installed and ready to work
-* kubectl installed and configured to work with the k8s cluster
+1. **Ideology** - ArgoCD implements **GitOps** paradigm for CD. The main point - Git is our single source of true. After we push our app's config changes into the app config repo - argocd syncs the app state with the changes. I.e. our changes are **declarative.**
+2. **Implementation** - ArgoCD is built solely from the Kubernetes entities - custom resource definitions (CRD), a controller to process the CRDs, RBAC policies to organize security etc.
 
 
-## Resources
+## Version
 
-* ArgoCD's official getting started [guide](https://argoproj.github.io/argo-cd/getting_started/)
+Current version is 0.12. Version 1.0 is planned for release on May.
+
+## Architecture
+
+![arch](./pics/arch.png)
+
+### ArgoCD's Components
+
+1. **API server**
+* application management and status reporting
+* invoking of application operations (e.g. sync, rollback, user-defined actions)
+* credential management
+* auth/authz management
+* listener/forwarder for Git webhook events
+
+2. **Application Controller**
+* adjusts the application's actual state with the desired target one
+
+3. **Repository Server**
+* maintains a local cache of the Git repository
+
+4. **ArgoCD Client**
+* a CLI application to interact with the argocd server
+
+
+## Features
+
+* Supports both the pull and the push-based GitOps models to sync target environments with desired application state.
+* Multiple manifests template formats: Helm, Kustomize, Ksonnet/Jsonnet or plain YAML manifests.
+* Git branch tracking or tag/commit pinning.
+* App synchronization: manual or automated.
+* Rollback to any application state committed in the git repository.
+* Continuous monitoring of deployed applications.
+* Web console with visualized app's deployment scheme, logs and health statuses.
+
+* ArgoCD is agnostic to your CI system, and provides gRPC/REST/CLI to integrate with your CI of choice.
+* SSO Integration (OIDC, LDAP, GitHub).
+* Webhook integration (GitHub, GitLab, BitBucket).
+* Complex application rollouts (e.g., canary upgrades, blue/green) via PreSync/Sync/PostSync hooks
