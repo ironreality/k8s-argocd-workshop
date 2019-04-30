@@ -1,5 +1,27 @@
 # Nginx Demo Deployment
 
+## Preparation
+
+Connect to the argocd's API:
+
+```
+# in a separate terminal window
+kubectl port-forward -n argocd service/argocd-server 8080:443
+```
+
+Create a k8s namespace to experiment within:
+
+```
+kubectl create namespace sandbox
+```
+
+## Create the application
+
+```
+argocd app create nginx-test --repo https://github.com/ironreality/k8s-argocd-workshop --path helm/nginx-test --dest-server https://kubernetes.default.svc --dest-namespace sandbox
+```
+
+## Check k8s events
 ```
 $ kubectl get events -n sandbox --sort-by='.metadata.creationTimestamp' | tail -n 20
 
