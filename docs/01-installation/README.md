@@ -27,7 +27,7 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 
 ## 3. Change the default admin password
 
-Expose the argocd's port - in a second terminal input:
+Expose the argocd's port - in another terminal panel input:
 
 ```bash
 kubectl port-forward -n argocd service/argocd-server 8080:443
