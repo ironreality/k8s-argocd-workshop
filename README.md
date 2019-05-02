@@ -1,5 +1,11 @@
 # Argo CD workshop
 
+# Table of content
+
+1. [Overview](#overview)
+2. [Installation](./docs/01-installation)
+3. [Basic usage](./docs/02-basic-usage)
+
 # Overview
 
 Argo CD is a new, lighweight Kubernetes-native continuous delivery (CD) system. "Kubernetes-native" means:
