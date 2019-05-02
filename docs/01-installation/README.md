@@ -42,4 +42,4 @@ argocd account update-password --current-password="${argocd_default_pass}" --new
 argocd relogin --password="${argocd_new_pass}"
 ```
 
-[Back](../../)
+[Back](./../../README.md)
