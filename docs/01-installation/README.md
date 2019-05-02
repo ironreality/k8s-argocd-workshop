@@ -41,3 +41,5 @@ argocd login --username=admin --password="${argocd_default_pass}" localhost:8080
 argocd account update-password --current-password="${argocd_default_pass}" --new-password="${argocd_new_pass}"
 argocd relogin --password="${argocd_new_pass}"
 ```
+
+[Back](../../)
