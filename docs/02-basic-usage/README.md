@@ -56,3 +56,5 @@ $ kubectl get events -n sandbox --sort-by='.metadata.creationTimestamp' | tail -
 ```
 kubectl get pod  -n sandbox -o go-template --template="{{range .items}}{{range .spec.containers}}{{.image}}{{println}}{{end}}{{end}}"
 ```
+
+[Back](./../../README.md)
