@@ -1,6 +1,22 @@
 # Organization workflow integration
 
-Applications are being organized via [projects](https://argoproj.github.io/argo-cd/user-guide/projects/)
+In order to map our current organization workflow to an Argo CD installation we should understand the Argo CD security model at first.
+The Argo CD security model is built on the three main components:
+
+* projects
+* single sign-on system (SSO)
+* role-based access control (RBAC)
+
+![secmodel](./pics/security_model.png)
+
+**Project** is a custom Kubernetes object to group logically related applications and repositories. 
+
+**SSO** system is the source of authentication data (user and group names). Usually an organization would use some already working SSO solution (Github, Active Directory, etc).
+
+**RBAC** is a common Kubernetes method to map project access grants to the user groups.
+
+
+# Example: Project manipulations
 
 ## Create a project
 
@@ -107,7 +123,7 @@ apps   Deployment  sandbox-1  nginx-test-1  Synced  Progressing        deploymen
 
 Now you should see in the web ui
 
-![app_project](./app_project_1.png)
+![app_project](./pics/app_project_1.png)
 
 
 ## Cleaning
