@@ -5,6 +5,7 @@
 1. [Overview](#overview)
 2. [Installation](./docs/01-installation)
 3. [Basic usage](./docs/02-basic-usage)
+4. [Organization workflow integration](./docs/04-organization-workflow)
 
 # Overview
 
@@ -16,7 +17,8 @@ Argo CD is a new, lighweight Kubernetes-native continuous delivery (CD) system. 
 
 ## Version
 
-Current Argo CD version is 0.12. Version 1.0 is [planned](https://github.com/argoproj/argo-cd/milestones) for release on May.
+Current Argo CD version is 0.12.
+Version 1.0 is [planned](https://github.com/argoproj/argo-cd/milestones) for release on May.
 
 ## Architecture
 
