@@ -1,7 +1,9 @@
 # Organization workflow integration
 
+## ArgoCD security model
+
 In order to map our current organization workflow to an Argo CD installation we should understand the Argo CD security model at first.
-The Argo CD security model is built on the three main components:
+The model is built on the three main components:
 
 * projects
 * single sign-on system (SSO)
