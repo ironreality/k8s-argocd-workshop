@@ -224,7 +224,8 @@ Next create a team in your Github organization - choose "Teams"->"New team". By 
 Configure the needed RBAC roles and groups in section "data" of argocd-rbac-cm config map.
 First, create a role with read-only access and apply it to the config map via "kubectl patch" command.
 
-**The RBAC edition is potentially dangerous operation so backup the RBAC policy config first**
+**The RBAC edition is a potentially dangerous operation so backup the RBAC policy config first**
+
 To backup in such way you should have jq installed
 ```bash
 kubectl get cm argocd-rbac-cm -n argocd -o=json | jq '.data | to_entries[] | { "data": { "policy.csv": .value } }' > rbac_backup.json
