@@ -15,7 +15,7 @@ The model is built on the three main components:
 
 **SSO** system is the source of authentication data (user and group names). Usually an organization would use some already working SSO solution (Github, Active Directory, etc).
 
-**RBAC** is a common Kubernetes method to map project access grants to the user groups.
+**RBAC** is a common Kubernetes method to map project access grants to the user groups. Argo CD keeps its RBAC configuration in argocd-rbac-cm config map.
 
 
 # Examples
@@ -24,6 +24,14 @@ The model is built on the three main components:
 * [SSO system integration - Github](#sso-system-integration)
 * [RBAC creation](#rbac-creation)
 
+## Preparation
+
+Connect to the argocd's API via k8s port forwarding:
+
+```
+# in a separate terminal window
+kubectl port-forward -n argocd service/argocd-server 8080:443
+```
 
 # Project manipulations
 
