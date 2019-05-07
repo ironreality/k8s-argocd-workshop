@@ -1,0 +1,8 @@
+data:
+  policy.csv: |
+    p, role:piko-readonly, applications, get, piko-prod/*, allow
+    p, role:piko-readonly, projects, get, piko-prod, allow
+    p, role:piko-readonly, clusters, get, *, allow
+    p, role:piko-readonly, repositories, get, *, allow
+
+    g, pikodiribibi:dev, role:piko-readonly

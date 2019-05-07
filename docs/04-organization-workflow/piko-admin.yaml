@@ -1,0 +1,8 @@
+data:
+  policy.csv: |
+    p, role:piko-admin, applications, *, piko-prod/*, allow
+    p, role:piko-admin, projects, get, piko-prod, allow
+    p, role:piko-admin, clusters, get, *, allow
+    p, role:piko-admin, repositories, *, *, allow
+
+    g, pikodiribibi:dev, role:piko-admin
