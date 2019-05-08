@@ -117,7 +117,7 @@ Now in the web ui we can see a graph of our app's Kubernetes objects
 git clone git@github.com:ironreality/k8s-argocd-workshop.git
 cd k8s-argocd-workshop/helm/nginx-test
 
-# I use yq tool to edit YAML but you can adjust the file manually
+# I use yq tool to edit YAML but you could edit with any tool you like
 yq write --verbose --inplace values.yaml image.tag 1.15
 
 git add values.yaml
@@ -180,7 +180,7 @@ After the rollback we see the previous version's replica set is scaled up again
 
 ## Cleaning
 
-```bash
+```
 argocd app delete nginx-test && argocd app wait nginx-test
 kubectl delete namespace sandbox
 ```
