@@ -1,0 +1,185 @@
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: elk-elasticsearch
+  labels:
+    component: elk-elasticsearch
+    role: data
+spec:
+  selector:
+    component: elk-elasticsearch
+    role: data
+  ports:
+  - name: es-data
+    port: 9200
+#type: LoadBalancer
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: elk-elasticsearch
+  #namespace: kube-system
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+  - host: 
+    http:
+      paths:
+      - path: /elk/elasticsearch
+        backend:
+          serviceName: elk-elasticsearch
+          servicePort: 9200
+---
+# Master Node(s)
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: elk-es-master
+  labels:
+    component: elk-elasticsearch
+    role: master
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        component: elk-elasticsearch
+        role: master
+    spec:
+      initContainers:
+      - name: init-sysctl
+        image: busybox:1.27.2
+        command:
+        - sysctl
+        - -w
+        - vm.max_map_count=262144
+        securityContext:
+          privileged: true
+      containers:
+      - name: elk-es-master
+        image: docker.elastic.co/elasticsearch/elasticsearch:6.5.3
+        env:
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: CLUSTER_NAME
+          value: myesdb
+        - name: NUMBER_OF_MASTERS
+          value: "1"
+        - name: NODE_MASTER
+          value: "true"
+        - name: NODE_INGEST
+          value: "false"
+        - name: NODE_DATA
+          value: "false"
+        - name: HTTP_ENABLE
+          value: "false"
+        - name: ES_JAVA_OPTS
+          value: -Xms256m -Xmx256m
+        - name: PROCESSORS
+          valueFrom:
+            resourceFieldRef:
+              resource: limits.cpu
+        resources:
+          requests:
+            cpu: 0.25
+          limits:
+            cpu: 1
+        ports:
+        - containerPort: 9300
+          name: transport
+        livenessProbe:
+          tcpSocket:
+            port: transport
+          initialDelaySeconds: 20
+          periodSeconds: 10
+        volumeMounts:
+        - name: storage
+          mountPath: /data
+      volumes:
+          - emptyDir:
+              medium: ""
+            name: "storage"
+---
+# Data Node(s)
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: elk-es-data
+  labels:
+    component: elk-elasticsearch
+    role: data
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        component: elk-elasticsearch
+        role: data
+    spec:
+      initContainers:
+      - name: init-sysctl
+        image: busybox:1.27.2
+        command:
+        - sysctl
+        - -w
+        - vm.max_map_count=262144
+        securityContext:
+          privileged: true
+      containers:
+      - name: es-master
+        image: docker.elastic.co/elasticsearch/elasticsearch:6.5.3
+        env:
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: CLUSTER_NAME
+          value: myesdb
+        - name: NUMBER_OF_MASTERS
+          value: "1"
+        - name: NODE_MASTER
+          value: "false"
+        - name: NODE_INGEST
+          value: "false"
+        - name: NODE_DATA
+          value: "true"
+        - name: HTTP_ENABLE
+          value: "false"
+        - name: ES_JAVA_OPTS
+          value: -Xms256m -Xmx256m
+        - name: PROCESSORS
+          valueFrom:
+            resourceFieldRef:
+              resource: limits.cpu
+        resources:
+          requests:
+            cpu: 0.25
+          limits:
+            cpu: 1
+        ports:
+        - containerPort: 9300
+          name: transport
+        livenessProbe:
+          tcpSocket:
+            port: transport
+          initialDelaySeconds: 20
+          periodSeconds: 10
+        volumeMounts:
+        - name: storage
+          mountPath: /data
+      volumes:
+          - emptyDir:
+              medium: ""
+            name: "storage"
