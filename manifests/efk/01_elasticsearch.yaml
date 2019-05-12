@@ -19,13 +19,29 @@ spec:
       - image: elasticsearch:6.7.2
         name: elasticsearch
         ports:
-        - containerPort: 9200
+        - name: http
+          containerPort: 9200
           protocol: TCP
-        - containerPort: 9300
+        - name: transport
+          containerPort: 9300
           protocol: TCP
         env:
           - name: discovery.type
             value: single-node
+        livenessProbe:
+          tcpSocket:
+            port: transport
+          initialDelaySeconds: 15
+          periodSeconds: 5
+          failureThreshold: 20
+        readinessProbe:
+          httpGet:
+            path: /_cluster/health
+            port: http
+          initialDelaySeconds: 30
+          periodSeconds: 5
+          timeoutSeconds: 7
+          failureThreshold: 15
 ---
 apiVersion: v1
 kind: Service

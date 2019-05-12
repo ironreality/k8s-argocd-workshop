@@ -19,8 +19,17 @@ spec:
       - image: kibana:6.7.2
         name: kibana
         ports:
-        - containerPort: 5601
+        - name: http
+          containerPort: 5601
           protocol: TCP
+        readinessProbe:
+          httpGet:
+            path: /api/status
+            port: http
+          initialDelaySeconds: 60
+          periodSeconds: 5
+          timeoutSeconds: 7
+          failureThreshold: 15
 ---
 apiVersion: v1
 kind: Service
