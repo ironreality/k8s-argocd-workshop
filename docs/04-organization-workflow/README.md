@@ -20,7 +20,7 @@ The model is built on the three main components:
 
 # Examples
 
-* [Project manipulations](#example-project-manipulations)
+* [Project manipulations](#project-manipulations)
 * [SSO system integration - Github](#sso-system-integration)
 * [RBAC creation](#rbac-creation)
 
