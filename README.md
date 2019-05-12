@@ -6,6 +6,7 @@
 2. [Installation](./docs/01-installation)
 3. [Basic usage](./docs/02-basic-usage)
 4. [Organization workflow integration](./docs/04-organization-workflow)
+5. [Application auto syncing](./docs/05-automated-sync)
 
 # Overview
 
