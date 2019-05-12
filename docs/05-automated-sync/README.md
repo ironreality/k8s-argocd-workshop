@@ -42,14 +42,19 @@ The web UI after app syncing.  **Note the last sync time and repo commit**
 Now choose efk application in the web ui, click on "Enable auto-syncing" and then on "OK"
 <img src="./pics/auto_02.png" alt="drawing" width="800"/>
 
-Change the code in an app's manifest and commit it into the remote repo. For instance, change Kibana's image version from "6.7.2" to "7.0.1"
+Change the code in an app's manifest and commit it into the remote repo. For instance, change the Elasticsearch and Kibana's image versions from "6.7.2" to "7.0.1"
 
 ```bash
-vim manifests/efk/02_kibana.yaml
-git add manifests/efk/02_kibana.yaml
-git commit -m "up kibana version"
+vim -o manifests/efk/01_elasticsearch.yaml manifests/efk/02_kibana.yaml 
+git add manifests/efk/01_elasticsearch.yaml manifests/efk/02_kibana.yaml
+git commit -m "example: up es and kibana to 7.0.1"
 git push origin master
 ```
+
+The default Argo CD's polling interval is 5 min. In a few minutes the last commited changes will be deployed
+
+<img src="./pics/auto_04.png" alt="drawing" width="800"/>
+
 
 ## Syncing the app state via webhook callbacks
 
