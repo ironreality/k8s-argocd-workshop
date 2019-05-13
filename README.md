@@ -18,8 +18,9 @@ Argo CD is a new, lighweight Kubernetes-native continuous delivery (CD) system. 
 
 ## Version
 
-Current Argo CD version is 0.12.
-Version 1.0 is [planned](https://github.com/argoproj/argo-cd/milestones) for release on May.
+Current Argo CD version is 0.12.3
+Version 1.0.0-rc3 is [available](https://github.com/argoproj/argo-cd/releases/tag/v1.0.0-rc3)
+The Argo CD's roadmanp is [here](https://github.com/argoproj/argo-cd/milestones)
 
 ## Architecture
 
