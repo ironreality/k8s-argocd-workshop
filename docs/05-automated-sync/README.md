@@ -51,12 +51,17 @@ git commit -m "example: up es and kibana to 7.0.1"
 git push origin master
 ```
 
-The default Argo CD's polling interval is 5 min. In a few minutes the last commited changes will be deployed
+The default Argo CD's polling interval is 3 min. In a few minutes the last commited changes will be deployed
 
 <img src="./pics/auto_04.png" alt="drawing" width="800"/>
 
 
 ## Syncing the app state via webhook callbacks
 
+Official [doc](https://argoproj.github.io/argo-cd/operator-manual/webhook/)
+
+The API server can be configured to receive webhook events. Argo CD supports Git webhook notifications from GitHub, GitLab, and BitBucket.
+
+**In order to recieve webhook notifications from the providers the callback URL must be accessible from outside.**
 
 [Main page](./../../README.md)
