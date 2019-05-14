@@ -148,7 +148,10 @@ Now you should see in the web ui
 ```bash
 argocd app delete nginx-test
 argocd app delete nginx-test-1
+
 argocd proj delete sandbox
+argocd proj delete sandbox-common
+
 kubectl delete namespace sandbox-1
 kubectl delete namespace sandbox
 ```
