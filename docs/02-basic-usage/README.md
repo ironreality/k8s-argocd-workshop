@@ -4,6 +4,14 @@
 
 As a simple application we'll use Helm-charted Nginx installation. The chart is located in [helm/nginx-test](./../../helm/nginx-test) subdirectory of the workshop's repo.
 
+1. [Preparation](#preparation)
+1. [Creating the application](#creating-the-application)
+1. [Syncing the application](#syncing-the-application)
+1. [Changing the application parameters](#changing-the-application-parameters)
+1. [Changing the application parameters from the web UI](#changing-the-application-parameters-from-the-web-ui)
+1. [Rolling back the application to a previous version](#rolling-back-the-application-to-a-previous-version)
+1. [Cleaning](#cleaning)
+
 ## Preparation
 
 Connect to the argocd's API via k8s port forwarding and login into Argo CD in CLI:
@@ -22,7 +30,7 @@ Create a k8s namespace to experiment within:
 kubectl create namespace sandbox
 ```
 
-## Create the application
+## Creating the application
 
 ```bash
 argocd app create nginx-test --repo https://github.com/ironreality/k8s-argocd-workshop --path helm/nginx-test --dest-server https://kubernetes.default.svc --dest-namespace sandbox
@@ -32,7 +40,7 @@ The result in the web UI:
 
 ![ui](./pics/nginx_01.png)
 
-## Sync the application
+## Syncing the application
 
 "Sync" in Argo CD's [terms](https://argoproj.github.io/argo-cd/core_concepts/) is the process of adjusting the application's live state toward the target state defined in the application's source repository. 
 
@@ -109,9 +117,9 @@ Now in the web ui we can see a graph of our app's Kubernetes objects
 ![ui](./pics/nginx_02.png)
 
 
-## Change application parameters
+## Changing the application parameters
 
-### Change Nginx version
+### Changing the Nginx version
 
 ```
 git clone git@github.com:ironreality/k8s-argocd-workshop.git
@@ -161,7 +169,7 @@ argocd app sync nginx-test && argocd app wait nginx-test
 ![ui](./pics/nginx_05.png)
 
 
-## Change application parameters in the web ui
+## Changing the application parameters from the web UI
 
 Sometimes wi will need to change the application deployment parameters (image version, replica count etc.) in ad-hoc manner without our CI/CD pipeline triggering. You can do so right in the web ui in the application parameter settings. Choose "Details" on the k8s object you're going to correct -> "Parameters" -> "Edit".
 
@@ -178,7 +186,7 @@ Then press "Save" and perform the application sync. After sync we see that the n
 ![ui](./pics/nginx_08.png)
 
 
-## Roll back the application to a previous version
+## Rolling back the application to a previous version
 
 With Argo CD we can perform rollbacks of our application directrly from the web ui. Just choose "History" in the app's menu and then find and choose the version needed to restore.
 
@@ -194,6 +202,6 @@ After the rollback we see the previous version's replica set is scaled up again
 ## Cleaning
 
 ```
-argocd app delete nginx-test && argocd app wait nginx-test
+argocd app delete nginx-test
 kubectl delete namespace sandbox
 ```
