@@ -93,4 +93,16 @@ argocd account update-password --current-password="${argocd_default_pass}" --new
 argocd relogin --password="${argocd_new_pass}"
 ```
 
+After installation we're able to use as the CLI client so the web UI
+
+CLI
+```
+$ argocd app list
+NAME  CLUSTER  NAMESPACE  PROJECT  STATUS  HEALTH  SYNCPOLICY  CONDITIONS
+```
+
+Web UI
+
+<img src="./pics/webui_01.png" alt="drawing" width="800"/>
+
 [Back](./../../README.md)
