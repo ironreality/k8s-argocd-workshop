@@ -125,6 +125,19 @@ git commit -m "example: down Nginx version"
 git push origin master
 ```
 
+**Tip**
+
+To view diff between the target and live application states you could use "argocd app diff ..." command:
+
+```bash
+$ argocd app diff nginx-test
+===== apps/Deployment sandbox/nginx-test ======
+41c41
+<       - image: nginx:1.16
+---
+>       - image: nginx:1.15
+```
+
 <br>
 After syncing the app in the web ui we see that Argo CD leveraged nginx-test's k8s deployment functionality - it scaled to 0 the old replica set and created a new replica set with new Nginx version.
 
@@ -142,7 +155,7 @@ yq write  --inplace values.yaml image.tag 1.16
 git add values.yaml
 git commit -m "example: up nginx version"
 git push origin master
-argocd app sync nginx-test && argocd app wait nginx-test<Paste>
+argocd app sync nginx-test && argocd app wait nginx-test
 ```
 
 ![ui](./pics/nginx_05.png)
