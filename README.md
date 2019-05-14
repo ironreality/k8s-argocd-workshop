@@ -22,7 +22,7 @@ Current Argo CD version is 0.12.3
 Version 1.0.0-rc3 is [available](https://github.com/argoproj/argo-cd/releases/tag/v1.0.0-rc3)
 The Argo CD's roadmanp is [here](https://github.com/argoproj/argo-cd/milestones)
 
-## Architecture
+## Argo CD architecture
 
 <img src="./pics/arch_2.png" alt="drawing" width="800"/>
 
