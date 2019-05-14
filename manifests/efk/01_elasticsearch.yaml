@@ -16,7 +16,7 @@ spec:
         app: elasticsearch
     spec:
       containers:
-      - image: elasticsearch:6.7.2
+      - image: elasticsearch:7.0.1
         name: elasticsearch
         ports:
         - name: http
