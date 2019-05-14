@@ -16,7 +16,7 @@ spec:
         app: kibana
     spec:
       containers:
-      - image: kibana:7.0.1
+      - image: kibana:6.7.2
         name: kibana
         ports:
         - name: http

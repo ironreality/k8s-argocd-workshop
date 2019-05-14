@@ -29,8 +29,46 @@ Then create the app
 ```
 argocd app create efk --repo https://github.com/ironreality/k8s-argocd-workshop --path "manifests/efk" --dest-namespace kube-logging --dest-server https://kubernetes.default.svc
 
-argocd app sync efk
+argocd app sync efk && argocd app sync efk
 ```
+
+<details>
+<summary>Output</summary>
+
+```text
+Name:               efk
+Project:            default
+Server:             https://kubernetes.default.svc
+Namespace:          kube-logging
+URL:                https://localhost:8080/applications/efk
+Repo:               https://github.com/ironreality/k8s-argocd-workshop
+Target:
+Path:               manifests/efk
+Sync Policy:        <none>
+Sync Status:        Synced to  (c4e4330)
+Health Status:      Healthy
+
+Operation:          Sync
+Sync Revision:      c4e43307e836b92fa32c7ab2de0dbaa2d413ccc7
+Phase:              Succeeded
+Start:              2019-05-14 13:41:46 +0300 EEST
+Finished:           2019-05-14 13:41:49 +0300 EEST
+Duration:           3s
+Message:            successfully synced
+
+GROUP                      KIND                NAMESPACE     NAME           STATUS  HEALTH   HOOK  MESSAGE
+rbac.authorization.k8s.io  ClusterRole                       fluentd        Synced  Healthy
+apps                       DaemonSet           kube-logging  fluentd        Synced  Healthy        daemonset.apps/fluentd created
+extensions                 Deployment          kube-logging  elasticsearch  Synced  Healthy        deployment.extensions/elasticsearch created
+extensions                 Deployment          kube-logging  kibana         Synced  Healthy        deployment.extensions/kibana created
+                           Service             kube-logging  kibana         Synced  Healthy        service/kibana created
+rbac.authorization.k8s.io  ClusterRoleBinding                fluentd        Synced  Healthy
+                           Namespace                         kube-logging   Synced  Healthy
+                           Service             kube-logging  elasticsearch  Synced  Healthy        service/elasticsearch created
+                           ServiceAccount      kube-logging  fluentd        Synced  Healthy        serviceaccount/fluentd created
+```
+
+</details>
 
 The web UI after app syncing.  **Note the last sync time and repo commit**
 
