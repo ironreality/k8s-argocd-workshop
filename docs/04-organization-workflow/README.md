@@ -335,8 +335,8 @@ Now we're able to create an application in piko-prod project
 argocd app delete piko
 argocd proj delete piko-prod
 kubectl delete namespace piko-prod
-# restore the previously backuped RBAC config
-kubectl patch cm argocd-rbac-cm -n argocd --patch "$(cat rbac_backup.json)"
+# to restore the previously backuped RBAC config:
+# kubectl patch cm argocd-rbac-cm -n argocd --patch "$(cat rbac_backup.json)"
 ```
 
 [Main page](./../../README.md)
