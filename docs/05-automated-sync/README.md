@@ -12,6 +12,7 @@ In this lab we'll explore both these methods.
 * [Creating a testing plain manifest-based application](#creating-a-testing-plain-manifest-based-application)
 * [Syncing the app state via repo polling](#syncing-the-app-state-via-repo-polling)
 * [Syncing the app state via webhook callbacks](#syncing-the-app-state-via-webhook-callbacks)
+* [Cleaning](#cleaning)
 
 
 ## Creating a testing plain manifest-based application
@@ -101,5 +102,11 @@ Official [doc](https://argoproj.github.io/argo-cd/operator-manual/webhook/)
 The API server can be configured to receive webhook events. Argo CD supports Git webhook notifications from GitHub, GitLab, and BitBucket.
 
 **In order to recieve webhook notifications from the providers the callback URL must be accessible from outside.**
+
+## Cleaning
+
+```
+argocd app delete efk
+```
 
 [Main page](./../../README.md)
