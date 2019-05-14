@@ -14,6 +14,15 @@ In this lab we'll explore both these methods.
 * [Syncing the app state via webhook callbacks](#syncing-the-app-state-via-webhook-callbacks)
 * [Cleaning](#cleaning)
 
+## Preparation
+
+Connect to the argocd's API via K8s port forwarding:
+
+```
+# in a separate terminal window
+kubectl port-forward -n argocd service/argocd-server 8080:443
+```
+
 
 ## Creating a testing plain manifest-based application
 
