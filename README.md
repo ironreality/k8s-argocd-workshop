@@ -24,7 +24,7 @@ The Argo CD's roadmanp is [here](https://github.com/argoproj/argo-cd/milestones)
 
 ## Architecture
 
-![arch](./pics/arch.png)
+<img src="./pics/arch_2.png" alt="drawing" width="800"/>
 
 ### Argo CD's Components
 
@@ -44,6 +44,11 @@ The Argo CD's roadmanp is [here](https://github.com/argoproj/argo-cd/milestones)
 4. **Argo CD Client**
 * a CLI application to interact with the argocd server
 
+5. **SSO adapter**
+* implements integrations with external SSO providers (Github, Google Cloud, LDAP etc.)
+
+6. **Cache**
+* a Redis instance that caches frequently accessed objects
 
 ## Features
 
